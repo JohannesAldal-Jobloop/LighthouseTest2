@@ -1,0 +1,37 @@
+#tittel-el{
+    display: flex;
+    width: 352px;
+    height: 89px;
+    flex-direction: column;
+    justify-content: center;
+
+    color: #FFF;
+    text-align: center;
+    font-family: Itim;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    width: 336px;
+    height: 63px;
+
+    border-radius: 25px;
+    border: 36px solid #DBFF00;
+    background: #B54C4C;
+}
+
+#spelBakgrunn-el{
+    width: 740px;
+    height: 498px;
+    fill: #B54C4C;
+    stroke-width: 250px;
+    stroke: #DBFF00;
+}
+
+#tellerDiv-el{
+    height: fit-content;
+    width: fit-content;
+    background-color: gray;
+    padding: 10px;
+}

@@ -10,14 +10,14 @@ let GISStarta = false
 let arbeidere = 0
 let arbeidereEfektivitet = 1;
 let arbeiderePris = 10
-let arbeiderePrisØokning = 1.25
+let arbeiderePrisØkning = 1.25
 //-------------------------------
 
 //---------- Arbeidere ----------
 let maskiner = 0
 let maskinerEfektivitet = 5;
 let maskinerPris = 100
-let maskinerPrisØokning = 1.50
+let maskinerPrisØkning = 1.50
 //-------------------------------
 
 //---------- Tellere elimenter ----------
@@ -36,7 +36,7 @@ const lagere2KnappEl = document.getElementById("lagere2Knapp-el")
 godteriKnappEl.addEventListener("click", function()
 {
     godteri += godteriPerKlikk
-    godteriTellerEl.textContent = godteri;
+    godteriTellerEl.textContent = `Godteri: ${godteri}`;
 })
 
 // Viss godteri > arbeiderePris so øker du arbeidere med ein.
@@ -47,15 +47,19 @@ lagere1KnappEl.addEventListener("click", function()
         arbeidere++
 
         godteriISekundet += arbeidereEfektivitet
-        GISTellerEl.textContent = godteriISekundet
+        GISTellerEl.textContent = `Godteri i sekundet: ${godteriISekundet}`;
 
         godteri -= arbeiderePris
 
         KjekkOmGISErStarta()
 
-        ØkPris(arbeiderePris, arbeiderePrisØokning)
+        arbeiderePris = ØkPris(arbeiderePris, arbeiderePrisØkning)
+        // arbeiderePris *= arbeiderePrisØkning
+        // arbeiderePris = Math.floor(arbeiderePris)
 
-        godteriTellerEl.textContent = godteri;
+        console.log(arbeiderePris)
+
+        godteriTellerEl.textContent = `Godteri: ${godteri}`;
 
         lagere1KnappEl.textContent = `Få Arbeider. Pris: ${arbeiderePris}`
     }
@@ -70,15 +74,15 @@ lagere2KnappEl.addEventListener("click", function()
         maskiner++
 
         godteriISekundet += maskinerEfektivitet
-        GISTellerEl.textContent = godteriISekundet
+        GISTellerEl.textContent = `Godteri i sekundet: ${godteriISekundet}`;
 
         godteri -= maskinerPris
 
         KjekkOmGISErStarta()
         
-        ØkPris(maskinerPris, maskinerPrisØokning)
+        maskinerPris = ØkPris(maskinerPris, maskinerPrisØkning)
 
-        godteriTellerEl.textContent = godteri;
+        godteriTellerEl.textContent = `Godteri: ${godteri}`;
 
         lagere2KnappEl.textContent = `Få Maskin. Pris: ${maskinerPris}`
     }
@@ -91,7 +95,7 @@ lagere2KnappEl.addEventListener("click", function()
 function LagGodteriISekundet()
 {
     godteri += godteriISekundet
-    godteriTellerEl.textContent = godteri;
+    godteriTellerEl.textContent = `Godteri: ${godteri}`;
     
     setTimeout(LagGodteriISekundet, 1000)
 }
@@ -100,7 +104,8 @@ function LagGodteriISekundet()
 // Viss den ikkje er starte so starter den LagGodteriISekundet().
 function KjekkOmGISErStarta()
 {
-    if(!GISStarta){
+    if(!GISStarta)
+    {
         LagGodteriISekundet()
         GISStarta = true
     }
@@ -112,4 +117,5 @@ function ØkPris(pris, prisØking)
 {
     pris *= prisØking
     pris = Math.floor(pris)
+    return pris
 }
